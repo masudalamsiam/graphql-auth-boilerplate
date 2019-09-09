@@ -1,0 +1,43 @@
+type Query {
+ hello: String!
+}
+
+type User{
+    name: String!
+    email: String!
+    apps: [App!]
+}
+
+type App{
+    name: String!
+    Scopes: [Scope!]!
+    users: [User!]
+}
+
+type Scope{
+    name: String!
+    apps: [App!]
+}
+
+type Query {
+ user(query: String!): User!
+ app(query: String!): App!
+ scope(query: String!): Scope!
+}
+
+type Mutation {
+    createUser(date: CreateUserInput!): User!
+    createApp(date: CreateAppInput!): App!
+    createScope(name: String!): Scope!
+}
+
+input CreateUserInput{
+    name: String!
+    email: String!
+    appId: ID!
+}
+
+input CreateAppInput{
+    name: String!
+    Scopes: [ID!]!
+}
